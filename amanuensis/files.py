@@ -2,6 +2,10 @@ from os import mkdir
 from os.path import exists
 
 
+def hello_world():
+    print('Hello world!')
+
+
 def setup_dirs(dir_map: (list, tuple, dict)):
     """
     Creates a list of directory paths based on dir_map, which must be
