@@ -49,9 +49,12 @@ def walk_iter(iterable: (list, tuple, dict), prev='', sep='/'):
     elif isinstance(iterable, dict):
         for k, v in iterable.items():
             result.append(prev + k)
-            if isinstance(v, dict) or isinstance(v, list):
-                r = walk_iter(v, prev=prev + k + sep)
-                result += r
-            else:
-                result.append(prev + k + sep + v)
+            if v is not None:
+                if isinstance(v, dict) or isinstance(v, list):
+                    r = walk_iter(v, prev=prev + k + sep)
+                    result += r
+                elif isinstance(v, str):
+                    result.append(prev + k + sep + v)
+                else:
+                    raise ValueError(f'Invalid directory structure found at {k}: {v}')
     return result
