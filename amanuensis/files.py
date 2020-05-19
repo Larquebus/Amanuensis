@@ -43,14 +43,14 @@ def walk_iter(iterable: (list, tuple, dict), prev='', sep='/'):
     :return: A list.
     """
     result = []
-    if isinstance(iterable, list) or isinstance(iterable, tuple):
+    if isinstance(iterable, (list, tuple)):
         for i in iterable:
             result.append(prev + i)
     elif isinstance(iterable, dict):
         for k, v in iterable.items():
             result.append(prev + k)
             if v is not None:
-                if isinstance(v, dict) or isinstance(v, list):
+                if isinstance(v, (dict, list)):
                     r = walk_iter(v, prev=prev + k + sep)
                     result += r
                 elif isinstance(v, str):
