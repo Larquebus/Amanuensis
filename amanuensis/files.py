@@ -56,5 +56,6 @@ def walk_iter(iterable: (list, tuple, dict), prev='', sep='/'):
                 elif isinstance(v, str):
                     result.append(prev + k + sep + v)
                 else:
-                    raise ValueError(f'Invalid directory structure found at {k}: {v}')
+                    raise ValueError(
+                        f'Invalid directory structure found at {k}: {v}')
     return result
